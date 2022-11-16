@@ -5,62 +5,60 @@ const URL = process.env.REACT_APP_URL;
 
 export const getUser = () => async (dispatch) => {
   dispatch({ type: type.IS_AUTH_LODING });
+  const source = axios.CancelToken.source();
+
   try {
     const { data } = await axios.get(`${URL}/user`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
+      cancelToken: source.token,
     });
     dispatch({ type: type.IS_AUTH_SUCCESS, payload: data });
-    return data;
   } catch (err) {
     dispatch({ type: type.IS_AUTH_FAILURE, payload: err.response.data });
-    return err.response.data;
   }
 };
 
 export const registerUser = (payload) => async (dispatch) => {
   dispatch({ type: type.IS_AUTH_LODING });
+
+  const source = axios.CancelToken.source();
   try {
-    const { data } = await axios.post(`${URL}/user/register`, payload);
+    const { data } = await axios.post(`${URL}/user/register`, payload, {
+      cancelToken: source.token,
+    });
+
     // save token into local storage
-    await setToken(data.token);
+    await localStorage.setItem("token", data?.token);
     dispatch({ type: type.IS_AUTH_SUCCESS, payload: data });
-    return data;
-  } catch (err) {
-    dispatch({ type: type.IS_AUTH_FAILURE, payload: err.response.data });
-    return err.response.data;
+  } catch ({ response }) {
+    dispatch({ type: type.IS_AUTH_FAILURE, payload: response.data });
   }
 };
 
 export const loginUser = (payload) => async (dispatch) => {
   dispatch({ type: type.IS_AUTH_LODING });
+  const source = axios.CancelToken.source();
+
   try {
-    const { data } = await axios.post(`${URL}/user/login`, payload);
-
+    const { data } = await axios.post(`${URL}/user/login`, payload, {
+      cancelToken: source.token,
+    });
     // save token into local storage
-    await setToken(data.token);
-
+    await localStorage.setItem("token", data?.token);
     dispatch({ type: type.IS_AUTH_SUCCESS, payload: data });
-    return data;
   } catch (err) {
     dispatch({ type: type.IS_AUTH_FAILURE, payload: err.response.data });
-    return err.response.data;
   }
 };
 
-const setToken = async (token) => {
+export const userLogout = () => async (dispatch) => {
+  dispatch({ type: type.IS_AUTH_LODING });
   try {
-    return await localStorage.setItem("token", token);
+    await localStorage.removeItem("token");
+    dispatch({ type: type.IS_AUTH_FAILURE, payload: {} });
   } catch (err) {
-    return null;
-  }
-};
-
-export const removeToken = async () => {
-  try {
-    return await localStorage.removeItem("token");
-  } catch (err) {
-    return null;
+    dispatch({ type: type.IS_AUTH_FAILURE, payload: {} });
   }
 };

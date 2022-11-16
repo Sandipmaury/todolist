@@ -20,20 +20,18 @@ export const getTodolist = () => async (dispatch) => {
   }
 };
 
-export const getSingleTodolist =
-  (postId = "") =>
-  async (dispatch) => {
-    dispatch({ type: type.IS_DATA_LODING });
-    try {
-      const { data } = await axios.get(`${URL}/todolist/${postId}`, {
-        headers: headers,
-      });
-      dispatch({ type: type.IS_LODING_SUCCESS, payload: data });
-    } catch (err) {
-      dispatch({ type: type.IS_LODING_FAILURE });
-      console.error(err);
-    }
-  };
+export const getSingleTodolist = (todoId) => async (dispatch) => {
+  dispatch({ type: type.IS_DATA_LODING });
+  try {
+    const { data } = await axios.get(`${URL}/todolist/${todoId}`, {
+      headers: headers,
+    });
+    dispatch({ type: type.IS_LODING_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: type.IS_LODING_FAILURE });
+    console.error(err);
+  }
+};
 
 export const updateTodo = (id, data) => async (dispatch) => {
   dispatch({ type: type.IS_DATA_LODING });

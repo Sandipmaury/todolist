@@ -8,6 +8,7 @@ import { User } from "./User";
 
 export const Navbar = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+
   return (
     <Box
       h={["40px", "40px", "60px", "60px"]}
@@ -18,6 +19,7 @@ export const Navbar = () => {
       top={0}
       minW="350px"
       zIndex={5}
+      mb="20px"
     >
       <Flex
         alignItems="center"
@@ -38,7 +40,7 @@ export const Navbar = () => {
           gap="20px"
           bg="#ffffff"
         >
-          <NavLink to="/">
+          <NavLink to={isAuth ? "/dashboard" : "/"}>
             <Text>Home</Text>
           </NavLink>
           <NavLink to="/todos">

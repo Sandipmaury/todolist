@@ -2,19 +2,23 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Image,
   Input,
   InputGroup,
   InputRightAddon,
   Text,
   useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { MdVisibilityOff, MdVisibility } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Loding } from "../components/Loding";
 import { loginUser } from "../redux/AuthReducer/actions";
+import todolist from "../components/navbarComponents/todolist.png";
+import { loginPage } from "../config/Backgrounds";
+import { loginBorder } from "../config/Borders";
 
 export const Login = () => {
   const [visible, setVisible] = useState(false);
@@ -23,31 +27,42 @@ export const Login = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  const userDetails = useSelector((store) => store.AuthReducer.userDetails);
+  const isError = useSelector((store) => store.AuthReducer.isError);
+  const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+
+  // login form handler
   const formHandler = (event) => {
     event.preventDefault();
-    dispatch(loginUser({ email: email, password: password })).then(
-      ({ success, message }) => {
-        if (success) {
-          toast({
-            title: "Authentication successfull.",
-            description: "You are authorized to server our services.",
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-          });
-          return navigate("/");
-        }
-        toast({
-          title: "Account creation failed.",
-          description: message,
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-    );
+    dispatch(loginUser({ email: email, password: password }));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: "Authentication failed.",
+        description: userDetails?.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    if (isAuth) {
+      toast({
+        title: "Authentication successfull.",
+        description: userDetails?.message,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      return navigate(
+        location?.state?.pathname ? location?.state?.pathname : "/dashboard",
+        { replace: true }
+      );
+    }
+  }, [isError, isAuth]);
 
   return (
     <Flex
@@ -55,25 +70,28 @@ export const Login = () => {
       justifyContent="center"
       w="100%"
       maxW="100vw"
-      h="80vh"
+      h="100vh"
       minW="350px"
       zIndex={2}
+      px="10px"
+      bg={loginPage.mainBox}
     >
       <Flex
-        border="2px solid #e8f0fe"
+        border={loginBorder}
         direction="column"
         alignItems="center"
         m="auto"
         p="30px"
         borderRadius="1rem"
-        bg="#ffffff"
+        bg={loginPage.loginBox}
       >
+        <Image w="50%" src={todolist} />
         <Text mb="10px" fontSize="30px" fontWeight="medium">
           Login
         </Text>
         <form onSubmit={(e) => formHandler(e)}>
           <FormControl my="20px" isRequired>
-            <FormLabel>Email:</FormLabel>
+            <FormLabel>Email</FormLabel>
             <InputGroup>
               <Input
                 onChange={(e) => setEmail(e.target.value)}
@@ -84,7 +102,7 @@ export const Login = () => {
             </InputGroup>
           </FormControl>
           <FormControl isRequired>
-            <FormLabel>Password:</FormLabel>
+            <FormLabel>Password</FormLabel>
             <InputGroup>
               <Input
                 placeholder="enter your password"
@@ -118,7 +136,17 @@ export const Login = () => {
           color="red"
         >
           <Text color="black">Don't have account?</Text>
-          <Link to="/register">Create one</Link>
+          <Link
+            to={"/register"}
+            state={
+              location?.state?.pathname
+                ? location?.state?.pathname
+                : "/dashboard"
+            }
+            replace={true}
+          >
+            Create one
+          </Link>
         </Flex>
       </Flex>
       <Loding />
