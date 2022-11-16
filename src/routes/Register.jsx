@@ -7,25 +7,26 @@ import {
   InputGroup,
   InputRightAddon,
   Text,
+  useColorMode,
   useToast,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { MdVisibilityOff, MdVisibility } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Loding } from "../components/Loding";
+import { Loading } from "../components/Loading";
 import { registerUser } from "../redux/AuthReducer/actions";
-import todolist from "../components/navbarComponents/todolist.png";
+import todolist from "../components/navbarComponents/todolistLogo.png";
 import { registerPage } from "../config/Backgrounds";
 import { registerBorder } from "../config/Borders";
+import { registerButtonHover } from "../config/Hover";
 
 export const Register = () => {
   const [visible, setVisible] = useState(false);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const registerRef = useRef();
   const location = useLocation();
+  const { colorMode } = useColorMode();
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -38,7 +39,11 @@ export const Register = () => {
   const formHandler = async (event) => {
     event.preventDefault();
     dispatch(
-      registerUser({ username: username, email: email, password: password })
+      registerUser({
+        username: registerRef.username,
+        email: registerRef.email,
+        password: registerRef.password,
+      })
     );
   };
 
@@ -94,8 +99,7 @@ export const Register = () => {
             <FormLabel>Username</FormLabel>
             <InputGroup>
               <Input
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => (registerRef.username = e.target.value)}
                 placeholder="enter your username"
                 type="text"
               />
@@ -105,8 +109,7 @@ export const Register = () => {
             <FormLabel>Email</FormLabel>
             <InputGroup>
               <Input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                onChange={(e) => (registerRef.email = e.target.value)}
                 placeholder="enter your email"
                 type="email"
               />
@@ -116,8 +119,7 @@ export const Register = () => {
             <FormLabel>Password</FormLabel>
             <InputGroup>
               <Input
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                onChange={(e) => (registerRef.password = e.target.value)}
                 placeholder="enter your password"
                 type={visible ? "text" : "password"}
                 minLength="6"
@@ -132,7 +134,11 @@ export const Register = () => {
           <FormControl my="20px">
             <InputGroup>
               <Input
-                _hover={{ backgroundColor: "#e8f0fe" }}
+                _hover={
+                  colorMode === "dark"
+                    ? registerButtonHover.darkMode
+                    : registerButtonHover.lightMode
+                }
                 cursor="pointer"
                 type="submit"
                 value="Register"
@@ -147,7 +153,9 @@ export const Register = () => {
           gap="5px"
           color="red"
         >
-          <Text color="black">Already have an account?</Text>
+          <Text color={colorMode === "dark" ? "#ffffff" : "black"}>
+            Already have an account?
+          </Text>
           <Link
             to={"/login"}
             state={
@@ -161,7 +169,7 @@ export const Register = () => {
           </Link>
         </Flex>
       </Flex>
-      <Loding />
+      <Loading />
     </Flex>
   );
 };

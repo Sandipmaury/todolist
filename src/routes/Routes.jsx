@@ -7,7 +7,7 @@ import { ErrorPage } from "./ErrorPage";
 import { HomePage } from "./HomePage";
 import { Login } from "./Login";
 import { Register } from "./Register";
-import { Todos } from "./Todos";
+import { TaskList } from "./TaskList";
 import { UserProfile } from "./UserProfile";
 
 export const AllRoute = () => {
@@ -47,7 +47,7 @@ export const AllRoute = () => {
         element={
           <PrivateRoute>
             <Navbar />
-            <Todos />
+            <TaskList />
           </PrivateRoute>
         }
       />

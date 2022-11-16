@@ -1,5 +1,26 @@
 export const projectCardHover = {
-  border: "1px solid #e8f0fe",
-  boxShadow: "#e8f0fe 0px 1px 3px 0px, #e8f0fe 0px 0px 0px 1px",
-  transition: "0.1s",
+  lightMode: {
+    backgroundColor: "#e8f0fe",
+    transition: "0.1s",
+  },
+  darkMode: {
+    backgroundColor: "#0c0b48",
+    transition: "0.1s",
+  },
+};
+export const loginButtonHover = {
+  lightMode: {
+    backgroundColor: "#e8f0fe",
+  },
+  darkMode: {
+    backgroundColor: "#0c0b48",
+  },
+};
+export const registerButtonHover = {
+  lightMode: {
+    backgroundColor: "#e8f0fe",
+  },
+  darkMode: {
+    backgroundColor: "#0c0b48",
+  },
 };

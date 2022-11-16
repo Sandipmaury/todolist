@@ -2,7 +2,7 @@ import { Circles } from "react-loader-spinner";
 import { Flex, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
-export const Loding = ({ state }) => {
+export const Loading = ({ state }) => {
   const isLoading = useSelector((store) => store.AuthReducer.isLoding);
 
   return (

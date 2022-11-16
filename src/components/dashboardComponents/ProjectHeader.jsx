@@ -1,5 +1,6 @@
 import { Box, Button, Collapse, Flex, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { AiFillProject } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { DeleteProject } from "./DeleteProject";
 import { UpdateProject } from "./UpdateProject";
@@ -11,26 +12,37 @@ export const ProjectHeader = ({ setProjectId, projectId }) => {
   const showButton = project?.about.length > 230;
 
   return projectId === "" ? (
-    <Text
+    <Flex
       color={"lightgray"}
+      p="20px"
       fontSize={["1xl", "1xl", "2xl", "2xl"]}
       fontWeight={"bold"}
-      p="20px"
+      alignItems={"center"}
+      gap="5px"
     >
-      Select Project
-    </Text>
+      <AiFillProject />
+      <Text>Select Project</Text>
+    </Flex>
   ) : (
-    <Box p="10px" border={"1px solid red"} w="100%">
+    <Box p="10px" w="100%">
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         {/* project title */}
-        <Text fontSize={["1xl", "1xl", "2xl", "2xl"]} fontWeight={"bold"}>
-          {project?.title}
-        </Text>
+        <Flex
+          py="10px"
+          fontSize={["2xl", "2xl", "2xl", "2xl"]}
+          fontWeight={"bold"}
+          alignItems={"center"}
+          gap="5px"
+        >
+          <AiFillProject />
+          <Text>{project?.title}</Text>
+        </Flex>
         <Flex
           alignItems={"center"}
           gap={3}
           fontSize={["1xl", "1xl", "2xl", "2xl"]}
         >
+          {/* delete and edit buttons */}
           <UpdateProject project={project} />
           <DeleteProject setProjectId={setProjectId} projectId={projectId} />
         </Flex>

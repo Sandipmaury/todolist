@@ -57,8 +57,8 @@ export const userLogout = () => async (dispatch) => {
   dispatch({ type: type.IS_AUTH_LODING });
   try {
     await localStorage.removeItem("token");
-    dispatch({ type: type.IS_AUTH_FAILURE, payload: {} });
+    dispatch({ type: type.IS_USER_LOGOUT, payload: {} });
   } catch (err) {
-    dispatch({ type: type.IS_AUTH_FAILURE, payload: {} });
+    dispatch({ type: type.IS_USER_LOGOUT, payload: {} });
   }
 };

@@ -3,9 +3,9 @@ import * as way from "./actionType";
 
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case way.IS_PROJECT_LOADING:
+    case way.IS_TASK_LOADING:
       return { ...state, isLoading: true };
-    case way.IS_LOADING_PROJECT_SUCCESS:
+    case way.IS_LOADING_TASK_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -13,7 +13,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         data: payload,
         isError: false,
       };
-    case way.IS_LOADING_PROJECT_FAILURE:
+    case way.IS_LOADING_TASK_FAILURE:
       return {
         ...state,
         data: payload,

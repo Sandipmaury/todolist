@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createProjectBorder } from "../../config/Borders";
 import { createProject } from "../../redux/ProjectReducer/actions";
 
-export const FormCreateProject = ({ isOpen, onToggle, projectFunction }) => {
+export const FormCreateProject = ({ isOpen, onToggle }) => {
   const data = useSelector((store) => store.ProjectReducer.data);
   const isLoading = useSelector((store) => store.ProjectReducer.isLoading);
   const [title, setTitle] = useState(
@@ -25,16 +25,18 @@ export const FormCreateProject = ({ isOpen, onToggle, projectFunction }) => {
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const isError = useSelector((store) => store.ProjectReducer.isError);
-  const isSuccessfull = useSelector(
-    (store) => store.ProjectReducer.isSuccessfull
-  );
-
   // project form handler
   const formHandler = (event) => {
     event.preventDefault();
-    dispatch(createProject({ title: title, about: about }));
-    onToggle();
+    dispatch(createProject({ title: title, about: about })).then(() => {
+      toast({
+        title: "Project created.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      onToggle();
+    });
   };
 
   useEffect(() => {
@@ -43,27 +45,6 @@ export const FormCreateProject = ({ isOpen, onToggle, projectFunction }) => {
       setTitle("");
     }
   }, [isOpen]);
-
-  useEffect(() => {
-    if (isError) {
-      toast({
-        title: "Project creation failed.",
-        description: data?.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-    if (isSuccessfull) {
-      toast({
-        title: "Project created.",
-        description: data?.message,
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  }, [isError, isSuccessfull]);
 
   return (
     <Box p="5px" rounded={"md"} border={createProjectBorder}>

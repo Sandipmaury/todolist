@@ -1,3 +1,4 @@
 export const IS_AUTH_LODING = "IS_AUTH_LODING";
 export const IS_AUTH_SUCCESS = "IS_AUTH_SUCCESS";
 export const IS_AUTH_FAILURE = "IS_AUTH_FAILURE";
+export const IS_USER_LOGOUT = "IS_USER_LOGOUT";

@@ -7,27 +7,29 @@ import {
   InputGroup,
   InputRightAddon,
   Text,
+  useColorMode,
   useToast,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { MdVisibilityOff, MdVisibility } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Loding } from "../components/Loding";
+import { Loading } from "../components/Loading";
 import { loginUser } from "../redux/AuthReducer/actions";
-import todolist from "../components/navbarComponents/todolist.png";
+import todolist from "../components/navbarComponents/todolistLogo.png";
 import { loginPage } from "../config/Backgrounds";
 import { loginBorder } from "../config/Borders";
+import { loginButtonHover } from "../config/Hover";
 
 export const Login = () => {
   const [visible, setVisible] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
   const location = useLocation();
+  const { colorMode } = useColorMode();
+  const loginRef = useRef();
 
   const userDetails = useSelector((store) => store.AuthReducer.userDetails);
   const isError = useSelector((store) => store.AuthReducer.isError);
@@ -36,7 +38,7 @@ export const Login = () => {
   // login form handler
   const formHandler = (event) => {
     event.preventDefault();
-    dispatch(loginUser({ email: email, password: password }));
+    dispatch(loginUser({ email: loginRef.email, password: loginRef.password }));
   };
 
   useEffect(() => {
@@ -62,19 +64,18 @@ export const Login = () => {
         { replace: true }
       );
     }
-  }, [isError, isAuth]);
+  }, [isAuth, isError]);
 
   return (
     <Flex
       alignItems="center"
       justifyContent="center"
       w="100%"
-      maxW="100vw"
       h="100vh"
       minW="350px"
       zIndex={2}
       px="10px"
-      bg={loginPage.mainBox}
+      bg={colorMode === "dark" ? "" : loginPage.mainBox}
     >
       <Flex
         border={loginBorder}
@@ -94,8 +95,7 @@ export const Login = () => {
             <FormLabel>Email</FormLabel>
             <InputGroup>
               <Input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                onChange={(e) => (loginRef.email = e.target.value)}
                 placeholder="enter your email"
                 type="email"
               />
@@ -106,8 +106,8 @@ export const Login = () => {
             <InputGroup>
               <Input
                 placeholder="enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                minLength={6}
+                onChange={(e) => (loginRef.password = e.target.value)}
                 type={visible ? "text" : "password"}
               />
               <InputRightAddon
@@ -120,7 +120,11 @@ export const Login = () => {
           <FormControl my="20px">
             <InputGroup>
               <Input
-                _hover={{ backgroundColor: "#e8f0fe" }}
+                _hover={
+                  colorMode === "dark"
+                    ? loginButtonHover.darkMode
+                    : loginButtonHover.lightMode
+                }
                 cursor="pointer"
                 type="submit"
                 value="Login"
@@ -135,7 +139,9 @@ export const Login = () => {
           gap="5px"
           color="red"
         >
-          <Text color="black">Don't have account?</Text>
+          <Text color={colorMode === "dark" ? "#ffffff" : "black"}>
+            Don't have account?
+          </Text>
           <Link
             to={"/register"}
             state={
@@ -149,7 +155,7 @@ export const Login = () => {
           </Link>
         </Flex>
       </Flex>
-      <Loding />
+      <Loading />
     </Flex>
   );
 };
