@@ -8,6 +8,8 @@ import { UpdateProject } from "./UpdateProject";
 export const ProjectHeader = ({ setProjectId, projectId }) => {
   const [show, setShow] = useState(false);
   const data = useSelector((store) => store.ProjectReducer.data);
+
+  // get selected project
   const project = data?.data?.find((el) => el?._id === projectId);
   const showButton = project?.about.length > 230;
 
@@ -21,7 +23,7 @@ export const ProjectHeader = ({ setProjectId, projectId }) => {
       gap="5px"
     >
       <AiFillProject />
-      <Text>Select Project</Text>
+      <Text>{data?.data?.length === 0 ? "Create" : "Select"} Project</Text>
     </Flex>
   ) : (
     <Box p="10px" w="100%">
@@ -47,6 +49,11 @@ export const ProjectHeader = ({ setProjectId, projectId }) => {
           <DeleteProject setProjectId={setProjectId} projectId={projectId} />
         </Flex>
       </Flex>
+      {/* date and time */}
+      <Text mt={-2} fontSize={"12px"} fontWeight={"medium"}>
+        {" "}
+        {project?.createdAt}{" "}
+      </Text>
       {/* about project */}
       <Box flex={1}>
         <Collapse startingHeight={50} in={show}>

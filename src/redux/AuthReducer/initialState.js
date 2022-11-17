@@ -1,6 +1,6 @@
 export const initialState = {
   isAuth: false,
   userDetails: {},
-  isLoding: false,
+  isLoading: false,
   isError: false,
 };

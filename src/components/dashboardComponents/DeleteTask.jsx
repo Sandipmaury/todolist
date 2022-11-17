@@ -1,4 +1,4 @@
-import { Box, Button, Tooltip, useToast } from "@chakra-ui/react";
+import { Box, Tooltip, useToast } from "@chakra-ui/react";
 import React from "react";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -16,8 +16,8 @@ export const DeleteTask = ({ projectId, taskId }) => {
     });
   };
   return (
-    <Tooltip hasArrow label="Delete Task" fontSize="md">
-      <Box onClick={clickHandler} fontSize="25px">
+    <Tooltip hasArrow label="Delete Task">
+      <Box cursor={"pointer"} onClick={clickHandler} fontSize="25px">
         <MdDelete />
       </Box>
     </Tooltip>

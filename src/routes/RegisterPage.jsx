@@ -34,6 +34,7 @@ export const Register = () => {
   const userDetails = useSelector((store) => store.AuthReducer.userDetails);
   const isError = useSelector((store) => store.AuthReducer.isError);
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+  const isLoading = useSelector((store) => store.AuthReducer.isLoading);
 
   // register form handler
   const formHandler = async (event) => {
@@ -67,7 +68,7 @@ export const Register = () => {
       });
       navigate("/dashboard");
     }
-  }, [isError, isAuth]);
+  }, [isError, isAuth, isLoading]);
 
   return (
     <Flex

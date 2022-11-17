@@ -10,6 +10,7 @@ export const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!isAuth) {
       dispatch(getUser()).then(() => {

@@ -1,15 +1,40 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
-// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
 import { CreateProject } from "../components/dashboardComponents/CreateProject";
 import { ProjectHeader } from "../components/dashboardComponents/ProjectHeader";
 import { Projects } from "../components/dashboardComponents/Projects";
 import { Tasks } from "../components/dashboardComponents/Tasks";
 import { projectBorder } from "../config/Borders";
 import { projectShadow } from "../config/BoxShadows";
+import { updateTask } from "../redux/TaskReducer/actions";
 
 export const Dashboard = () => {
   const [projectId, setProjectId] = useState("");
+  const dispatch = useDispatch();
+
+  document.title = "create projects and manage.";
+
+  const dragEndHandler = (event) => {
+    const { destination, source, draggableId } = event;
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+    if (draggableId && projectId) {
+      dispatch(
+        updateTask(projectId, draggableId, {
+          status: destination.droppableId,
+        })
+      );
+    }
+  };
 
   return (
     <Box zIndex={2} w="100%">
@@ -41,7 +66,9 @@ export const Dashboard = () => {
                 setProjectId={setProjectId}
                 projectId={projectId}
               />
-              {projectId ? <Tasks projectId={projectId} /> : null}
+              <DragDropContext onDragEnd={(e) => dragEndHandler(e)}>
+                {projectId ? <Tasks projectId={projectId} /> : null}
+              </DragDropContext>
             </Box>
           </Box>
         </Flex>

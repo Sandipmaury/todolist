@@ -1,21 +1,27 @@
 import { Box } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { CopyRight } from "../components/homePageComponents/CopyRight";
+import { Footer } from "../components/homePageComponents/Footer";
+import { Section } from "../components/homePageComponents/Section";
+import { HomePageData } from "../config/utils";
 
 export const HomePage = () => {
-  const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (isAuth) {
-      navigate("/dashboard");
-    }
-  }, [isAuth]);
+
   return (
     <Box zIndex={2} w="100%">
-      <Box m="auto" w="100%" maxW="1100px" border="1px solid red" h="400px">
-        HomePage
-      </Box>
+      {HomePageData?.map((el, index) => (
+        <Section
+          key={index}
+          title={el?.title}
+          discription={el?.discription}
+          img={el?.img}
+          direction={index % 2 === 0 ? "row" : "row-reverse"}
+        />
+      ))}
+      <Footer />
+      <CopyRight />
     </Box>
   );
 };

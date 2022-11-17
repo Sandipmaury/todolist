@@ -3,7 +3,7 @@ import { Flex, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 export const Loading = ({ state }) => {
-  const isLoading = useSelector((store) => store.AuthReducer.isLoding);
+  const isLoading = useSelector((store) => store.AuthReducer.isLoading);
 
   return (
     <Modal isCentered isOpen={isLoading || state}>

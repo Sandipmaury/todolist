@@ -34,7 +34,7 @@ export const Navbar = () => {
       >
         <Flex alignItems={"center"} gap={"10px"} flex={1}>
           <Logo />
-          <ToggleColorMode />
+          {isAuth ? <ToggleColorMode /> : null}
         </Flex>
         <Flex
           fontSize={["16px", "16px", "20px", "20px"]}
@@ -44,9 +44,6 @@ export const Navbar = () => {
         >
           <NavLink to={isAuth ? "/dashboard" : "/"}>
             <Text>Home</Text>
-          </NavLink>
-          <NavLink to="/todos">
-            <Text>TaskList</Text>
           </NavLink>
           {isAuth ? <User /> : <Login />}
         </Flex>

@@ -62,3 +62,16 @@ export const userLogout = () => async (dispatch) => {
     dispatch({ type: type.IS_USER_LOGOUT, payload: {} });
   }
 };
+
+// post feedback functionality
+
+export const postFeedback = async (payload) => {
+  const source = axios.CancelToken.source();
+  try {
+    return await axios.post(`${URL}/feedbacks`, payload, {
+      cancelToken: source.token,
+    });
+  } catch ({ response }) {
+    return response;
+  }
+};

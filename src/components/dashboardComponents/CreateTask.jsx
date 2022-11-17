@@ -9,7 +9,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Textarea,
@@ -18,8 +17,8 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import { GrAdd } from "react-icons/gr";
+import React, { useRef } from "react";
+import { MdAdd } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -57,7 +56,7 @@ export const CreateTask = ({ projectId, header, postFunction }) => {
           color={colorMode === "dark" ? "#ffffff" : "black"}
           onClick={onOpen}
         >
-          <GrAdd />
+          <MdAdd />
         </Box>
       </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose}>

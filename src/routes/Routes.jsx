@@ -5,9 +5,8 @@ import { PrivateRoute } from "../components/PrivateRoute";
 import { Dashboard } from "./Dashboard";
 import { ErrorPage } from "./ErrorPage";
 import { HomePage } from "./HomePage";
-import { Login } from "./Login";
-import { Register } from "./Register";
-import { TaskList } from "./TaskList";
+import { Login } from "./LoginPage";
+import { Register } from "./RegisterPage";
 import { UserProfile } from "./UserProfile";
 
 export const AllRoute = () => {
@@ -39,15 +38,6 @@ export const AllRoute = () => {
           <PrivateRoute>
             <Navbar />
             <Dashboard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/todos"
-        element={
-          <PrivateRoute>
-            <Navbar />
-            <TaskList />
           </PrivateRoute>
         }
       />
