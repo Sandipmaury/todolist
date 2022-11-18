@@ -89,7 +89,12 @@ export const Register = () => {
         m="auto"
         p="30px"
         borderRadius="1rem"
-        bg={registerPage.registerBox}
+        color={"#484bf2"}
+        bg={
+          colorMode === "dark"
+            ? registerPage.darkMode.registerBox
+            : registerPage.lightMode.registerBox
+        }
       >
         <Image w="50%" src={todolist} />
         <Text mb="10px" fontSize="30px" fontWeight="medium">
@@ -143,6 +148,7 @@ export const Register = () => {
                 cursor="pointer"
                 type="submit"
                 value="Register"
+                color={"#ffffff"}
               />
             </InputGroup>
           </FormControl>

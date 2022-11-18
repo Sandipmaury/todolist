@@ -49,6 +49,7 @@ export const User = () => {
           cursor="pointer"
           fontSize={["13px", "13px", "16px", "16px"]}
           as={Box}
+          color={"#484bf2"}
         >
           <Flex
             w={["35px", "35px", "50px", "50px"]}

@@ -1,9 +1,9 @@
-export const projectBorder = "2px solid #e8f0fe";
+export const projectBorder = "5px solid #1b0f91";
 export const loginBorder = "2px solid #e8f0fe";
 export const registerBorder = "2px solid #e8f0fe";
 export const createProjectBorder = "2px solid #e8f0fe";
 export const projectCardBorder = "2px solid #e8f0fe";
-export const taskCreated = "2px solid #e8f0fe";
-export const taskPending = "2px solid #e8f0fe";
-export const taskCompleted = "2px solid #e8f0fe";
+export const taskCreated = "4px solid #91b3fa";
+export const taskPending = "4px solid #91b3fa";
+export const taskCompleted = "4px solid #91b3fa";
 export const userBox = "2px solid #e8f0fe";

@@ -10,6 +10,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { FaChild } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { projectColumnBg } from "../../config/Backgrounds";
 import { taskCompleted, taskCreated } from "../../config/Borders";
 import { TaskCard } from "./TaskCard";
 
@@ -19,7 +20,7 @@ export const CompletedTask = ({ projectId }) => {
   const taskArr = data?.data?.filter((el) => el.status === "completed");
 
   return (
-    <Box rounded={"md"} border={taskCreated}>
+    <Box bg={projectColumnBg} rounded={"md"} border={taskCreated}>
       <Droppable droppableId={"completed"}>
         {(provided) => (
           <Box ref={provided.innerRef} {...provided.droppableProps}>

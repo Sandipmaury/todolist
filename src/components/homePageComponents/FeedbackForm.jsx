@@ -38,6 +38,8 @@ export const FeedbackForm = () => {
           placeholder="enter your name"
           type={"text"}
           value={name}
+          color={"#484bf2"}
+          border={"1px solid #484bf2"}
         />
       </FormControl>
       <FormControl mt={2} isRequired>
@@ -47,6 +49,7 @@ export const FeedbackForm = () => {
           placeholder="enter your feedback"
           type={"text"}
           value={feedback}
+          color={"#484bf2"}
         />
         <Button mt={2} w={"100%"} type="submit">
           Submit

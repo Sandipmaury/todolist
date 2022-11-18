@@ -10,7 +10,7 @@ export const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <Box zIndex={2} w="100%">
+    <Box bg={"#ffffff"} zIndex={2} w="100%">
       {HomePageData?.map((el, index) => (
         <Section
           key={index}
@@ -18,6 +18,7 @@ export const HomePage = () => {
           discription={el?.discription}
           img={el?.img}
           direction={index % 2 === 0 ? "row" : "row-reverse"}
+          index={index}
         />
       ))}
       <Footer />

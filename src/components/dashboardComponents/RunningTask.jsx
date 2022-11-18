@@ -10,6 +10,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { GiRunningNinja } from "react-icons/gi";
 import { useSelector } from "react-redux";
+import { projectColumnBg } from "../../config/Backgrounds";
 import { taskCreated, taskPending } from "../../config/Borders";
 import { TaskCard } from "./TaskCard";
 
@@ -18,7 +19,7 @@ export const RunningTask = ({ projectId }) => {
   const data = useSelector((store) => store.TaskReducer.data);
   const taskArr = data?.data?.filter((el) => el.status === "running");
   return (
-    <Box rounded={"md"} border={taskCreated}>
+    <Box bg={projectColumnBg} rounded={"md"} border={taskCreated}>
       <Droppable droppableId={"running"}>
         {(provided) => (
           <Box ref={provided.innerRef} {...provided.droppableProps}>

@@ -16,7 +16,14 @@ export const Navbar = () => {
     <Box
       h={["40px", "40px", "60px", "60px"]}
       w="100%"
-      bg={colorMode === "dark" ? navbarBg.darkMode : navbarBg.mainBox}
+      color={"#484bf2"}
+      bg={
+        isAuth
+          ? colorMode === "dark"
+            ? navbarBg.darkMode
+            : navbarBg.mainBox
+          : "#ffffff"
+      }
       position="sticky"
       top={0}
       minW="350px"

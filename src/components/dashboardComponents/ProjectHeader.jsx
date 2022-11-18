@@ -26,7 +26,7 @@ export const ProjectHeader = ({ setProjectId, projectId }) => {
       <Text>{data?.data?.length === 0 ? "Create" : "Select"} Project</Text>
     </Flex>
   ) : (
-    <Box p="10px" w="100%">
+    <Box color={"#ffffff"} p="10px" w="100%">
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         {/* project title */}
         <Flex

@@ -10,18 +10,18 @@ export const projectCardHover = {
 };
 export const loginButtonHover = {
   lightMode: {
-    backgroundColor: "#e8f0fe",
+    backgroundColor: "#484bf2",
   },
   darkMode: {
-    backgroundColor: "#0c0b48",
+    backgroundColor: "#484bf2",
   },
 };
 export const registerButtonHover = {
   lightMode: {
-    backgroundColor: "#e8f0fe",
+    backgroundColor: "#484bf2",
   },
   darkMode: {
-    backgroundColor: "#0c0b48",
+    backgroundColor: "#484bf2",
   },
 };
 

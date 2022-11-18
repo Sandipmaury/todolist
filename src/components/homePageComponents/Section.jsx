@@ -1,8 +1,8 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Section = ({ title, discription, img, direction }) => {
+export const Section = ({ title, discription, img, direction, index }) => {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +17,7 @@ export const Section = ({ title, discription, img, direction }) => {
           <Text
             color={"#484bf2"}
             fontWeight={"bold"}
-            fontSize={["2xl", "3xl", "4xl", "5xl"]}
+            fontSize={["2xl", "3xl", "3xl", "5xl"]}
           >
             {" "}
             {title}{" "}
@@ -27,11 +27,22 @@ export const Section = ({ title, discription, img, direction }) => {
             w={["80%", "70%", "60%", "50%"]}
             textAlign={"center"}
             fontWeight={"medium"}
-            fontSize={["2xl", "2xl", "3xl", "3xl"]}
+            fontSize={["2xl", "2xl", "2xl", "3xl"]}
           >
             {" "}
             {discription}{" "}
           </Text>
+          {index === 4 ? (
+            <Button
+              mt={5}
+              _hover={{ backgroundColor: "#1b0f91" }}
+              bg={"#484bf9"}
+              color={"#ff8a82"}
+              onClick={() => navigate("/register")}
+            >
+              Register Now
+            </Button>
+          ) : null}
         </Flex>
         <Image
           w={["80%", "80%", "35%", "35%"]}

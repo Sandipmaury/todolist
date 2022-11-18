@@ -25,6 +25,8 @@ export const DeleteProject = ({ setProjectId, projectId }) => {
   return (
     <Tooltip hasArrow label="Delete Project" fontSize="md">
       <Button
+        bg={"#4f53ff"}
+        _hover={{ backgroundColor: "#1b0f91" }}
         disabled={projectId === ""}
         onClick={clickHandler}
         size={["xs", "sm", "md", "md"]}

@@ -47,7 +47,7 @@ export const FormCreateProject = ({ isOpen, onToggle }) => {
   }, [isOpen]);
 
   return (
-    <Box p="5px" rounded={"md"} border={createProjectBorder}>
+    <Box color={"#ffffff"} p="5px" rounded={"md"} border={createProjectBorder}>
       <form onSubmit={(e) => formHandler(e)}>
         <FormControl isRequired>
           <InputGroup>
