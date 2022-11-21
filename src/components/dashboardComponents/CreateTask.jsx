@@ -62,7 +62,7 @@ export const CreateTask = ({ projectId, header, postFunction }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{header} your task</ModalHeader>
+          <ModalHeader>{header} Your Task</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <form onSubmit={(e) => submitHandler(e)}>

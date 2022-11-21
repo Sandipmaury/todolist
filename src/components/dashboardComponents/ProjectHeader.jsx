@@ -5,13 +5,16 @@ import { useSelector } from "react-redux";
 import { DeleteProject } from "./DeleteProject";
 import { UpdateProject } from "./UpdateProject";
 
-export const ProjectHeader = ({ setProjectId, projectId }) => {
+export const ProjectHeader = ({ setProjectId, projectId, projects }) => {
   const [show, setShow] = useState(false);
   const data = useSelector((store) => store.ProjectReducer.data);
+  const userDetails = useSelector((store) => store.AuthReducer.userDetails);
 
   // get selected project
-  const project = data?.data?.find((el) => el?._id === projectId);
-  const showButton = project?.about.length > 230;
+  const project = projects?.title
+    ? projects
+    : data?.data?.find((el) => el?._id === projectId);
+  const showButton = project?.about?.length > 230;
 
   return projectId === "" ? (
     <Flex
@@ -26,7 +29,7 @@ export const ProjectHeader = ({ setProjectId, projectId }) => {
       <Text>{data?.data?.length === 0 ? "Create" : "Select"} Project</Text>
     </Flex>
   ) : (
-    <Box color={"#ffffff"} p="10px" w="100%">
+    <Box p="10px" w="100%">
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         {/* project title */}
         <Flex
@@ -45,15 +48,37 @@ export const ProjectHeader = ({ setProjectId, projectId }) => {
           fontSize={["1xl", "1xl", "2xl", "2xl"]}
         >
           {/* delete and edit buttons */}
-          <UpdateProject project={project} />
-          <DeleteProject setProjectId={setProjectId} projectId={projectId} />
+          {userDetails?.data?.userId === project?.userId ? (
+            <UpdateProject project={project} />
+          ) : null}
+          {userDetails?.data?.userId === project?.userId ? (
+            <DeleteProject
+              setProjectId={setProjectId}
+              projectId={projectId || project?._id}
+            />
+          ) : null}
         </Flex>
       </Flex>
-      {/* date and time */}
-      <Text mt={-2} fontSize={"12px"} fontWeight={"medium"}>
-        {" "}
-        {project?.createdAt}{" "}
-      </Text>
+      {/* date, time and type */}
+      <Flex mt={-2} gap={2} alignItems={"center"}>
+        <Text fontSize={"12px"} fontWeight={"medium"}>
+          {" "}
+          {project?.createdAt}{" "}
+        </Text>
+        <Text
+          borderRadius={6}
+          p={1}
+          bg={"#e8f0fe"}
+          fontSize={"12px"}
+          fontWeight={"medium"}
+        >
+          {" "}
+          {project?.type
+            ?.split("")
+            ?.map((el, i) => (i === 0 ? el.toUpperCase() : el))
+            ?.join("")}{" "}
+        </Text>
+      </Flex>
       {/* about project */}
       <Box flex={1}>
         <Collapse startingHeight={50} in={show}>

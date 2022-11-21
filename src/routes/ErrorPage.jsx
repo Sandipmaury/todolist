@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 export const ErrorPage = () => {
   document.title = "404 | Page Not Found";
+
   const navigate = useNavigate();
   return (
-    <Box zIndex={2} w="100%">
+    <Box bg={"#1c2128"} h={"100%"} zIndex={2} w="100%">
       <Flex
         direction={"column"}
         justifyContent={"center"}
@@ -22,10 +23,15 @@ export const ErrorPage = () => {
           fontWeight={"bold"}
           textAlign={"center"}
           fontSize={["1xl", "2xl", "2xl", "3xl"]}
+          color={"#ffffff"}
         >
           404 | Page Not Found
         </Text>
-        <Text textAlign={"center"} fontSize={["1xl", "1xl", "2xl", "2xl"]}>
+        <Text
+          color={"#ffffff"}
+          textAlign={"center"}
+          fontSize={["1xl", "1xl", "2xl", "2xl"]}
+        >
           You just hit a route that doesn't exist... the sadness.😢
         </Text>
         <Button onClick={() => navigate("/")} leftIcon={<FaHome />}>

@@ -56,8 +56,6 @@ export const UpdateProject = ({ project }) => {
           size={["xs", "sm", "md", "md"]}
           isLoading={isLoading}
           onClick={onOpen}
-          bg={"#4f53ff"}
-          _hover={{ backgroundColor: "#1b0f91" }}
         >
           <AiFillEdit />
         </Button>

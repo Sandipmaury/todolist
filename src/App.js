@@ -7,6 +7,7 @@ import { AllRoute } from "./routes/Routes";
 export default function App() {
   const { colorMode } = useColorMode();
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+
   return (
     <Box
       bg={

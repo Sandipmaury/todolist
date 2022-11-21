@@ -9,7 +9,6 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        isSuccessfull: true,
         data: payload,
         isError: false,
       };
@@ -17,7 +16,6 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: payload,
-        isSuccessfull: false,
         isLoading: false,
         isError: true,
       };

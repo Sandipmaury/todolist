@@ -1,16 +1,13 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { CopyRight } from "../components/homePageComponents/CopyRight";
 import { Footer } from "../components/homePageComponents/Footer";
 import { Section } from "../components/homePageComponents/Section";
 import { HomePageData } from "../config/utils";
 
 export const HomePage = () => {
-  const navigate = useNavigate();
-
   return (
-    <Box bg={"#ffffff"} zIndex={2} w="100%">
+    <Box zIndex={2} w="100%">
       {HomePageData?.map((el, index) => (
         <Section
           key={index}
@@ -18,7 +15,6 @@ export const HomePage = () => {
           discription={el?.discription}
           img={el?.img}
           direction={index % 2 === 0 ? "row" : "row-reverse"}
-          index={index}
         />
       ))}
       <Footer />

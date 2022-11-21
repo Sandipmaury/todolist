@@ -5,7 +5,6 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Text,
   Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
@@ -23,25 +22,10 @@ export const User = () => {
     dispatch(userLogout());
   };
 
-  const toolTipUsername = userDetails?.data?.username
-    .split(" ")
-    .map((el) =>
-      el
-        .split("")
-        .map((char, index) => {
-          if (index === 0) {
-            return char.split("")[0].toUpperCase();
-          } else return char;
-        })
-        .join("")
-    )
-    .join(" ");
+  const toolTipUsername = userDetails?.data?.username;
 
-  const user = userDetails?.data?.username
-    .split(" ")
-    .map((el) => el[0])
-    .join("")
-    .toUpperCase();
+  const user = userDetails?.data?.username?.split(" ")?.map((el) => el[0]);
+
   return (
     <Menu>
       <Tooltip placement="left" hasArrow label={toolTipUsername} size={"md"}>
@@ -49,7 +33,6 @@ export const User = () => {
           cursor="pointer"
           fontSize={["13px", "13px", "16px", "16px"]}
           as={Box}
-          color={"#484bf2"}
         >
           <Flex
             w={["35px", "35px", "50px", "50px"]}
@@ -64,7 +47,15 @@ export const User = () => {
         </MenuButton>
       </Tooltip>
       <MenuList>
-        <MenuItem onClick={() => navigate("/user")}>Profile</MenuItem>
+        <MenuItem
+          onClick={() =>
+            navigate("/profile", {
+              state: { userId: userDetails?.data?.userId },
+            })
+          }
+        >
+          Profile
+        </MenuItem>
         <MenuItem onClick={() => clickHandler()}>Logout</MenuItem>
       </MenuList>
     </Menu>

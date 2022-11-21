@@ -75,3 +75,20 @@ export const postFeedback = async (payload) => {
     return response;
   }
 };
+
+// search team
+export const searchTeam = async (userId, params) => {
+  const source = axios.CancelToken.source();
+  try {
+    return await axios.get(`${URL}/user/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      cancelToken: source.token,
+      params: params,
+    });
+  } catch ({ response }) {
+    console.log(response);
+    return response;
+  }
+};

@@ -7,7 +7,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { GrAdd } from "react-icons/gr";
+import { MdAdd } from "react-icons/md";
 import { FormCreateProject } from "./FormCreateProject";
 
 export const CreateProject = () => {
@@ -20,7 +20,7 @@ export const CreateProject = () => {
           onClick={onToggle}
           w="100%"
           color={colorMode === "dark" ? "#ffffff" : "black"}
-          rightIcon={<GrAdd />}
+          rightIcon={<MdAdd />}
           variant="solid"
         >
           New Project

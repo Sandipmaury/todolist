@@ -27,7 +27,7 @@ export const TaskCard = ({ title, discription, projectId, taskId, index }) => {
     about.length = 20;
     about = about?.join(" ") + "...";
   } else {
-    about?.join(" ");
+    about = about?.join(" ");
   }
 
   return (

@@ -51,7 +51,6 @@ export const Dashboard = () => {
               border={projectBorder}
               boxShadow={projectShadow}
               p="5px"
-              bg={"#6e70fc"}
             >
               <CreateProject />
               <Projects projectId={projectId} setProjectId={setProjectId} />
@@ -62,7 +61,6 @@ export const Dashboard = () => {
               rounded={"md"}
               border={projectBorder}
               boxShadow={projectShadow}
-              bg={"#6e70fc"}
             >
               <ProjectHeader
                 setProjectId={setProjectId}

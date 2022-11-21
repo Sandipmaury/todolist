@@ -10,7 +10,6 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { FaListAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { projectColumnBg } from "../../config/Backgrounds";
 import { taskCreated } from "../../config/Borders";
 import { createTask } from "../../redux/TaskReducer/actions";
 import { CreateTask } from "./CreateTask";
@@ -21,7 +20,7 @@ export const CreatedTask = ({ projectId }) => {
   const data = useSelector((store) => store.TaskReducer.data);
   const taskArr = data?.data?.filter((el) => el.status === "created");
   return (
-    <Box bg={projectColumnBg} rounded={"md"} border={taskCreated}>
+    <Box rounded={"md"} border={taskCreated}>
       <Droppable droppableId={"created"}>
         {(provided) => (
           <Box ref={provided.innerRef} {...provided.droppableProps}>

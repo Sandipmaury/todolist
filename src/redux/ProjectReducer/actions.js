@@ -35,21 +35,6 @@ export const getProject = () => async (dispatch) => {
   }
 };
 
-export const getSingleProject = (todoId) => async (dispatch) => {
-  dispatch({ type: type.IS_PROJECT_LOADING });
-  try {
-    const { data } = await axios.get(`${URL}/projects/${todoId}`, {
-      headers: {
-        Authorization: "Bearer " + (await localStorage.getItem("token")),
-      },
-    });
-    dispatch({ type: type.IS_LOADING_PROJECT_SUCCESS, payload: data });
-  } catch (err) {
-    dispatch({ type: type.IS_LOADING_PROJECT_FAILURE });
-    console.error(err);
-  }
-};
-
 export const updateProject = (id, data) => async (dispatch) => {
   dispatch({ type: type.IS_PROJECT_LOADING });
   try {

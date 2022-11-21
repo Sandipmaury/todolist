@@ -6,6 +6,7 @@ import { navbarBg } from "../../config/Backgrounds";
 import { navbarShadow } from "../../config/BoxShadows";
 import { Login } from "./LoginButton";
 import { Logo } from "./Logo";
+import { SearchTeam } from "./SearchTeam";
 import { ToggleColorMode } from "./ToggleColorMode";
 import { User } from "./User";
 
@@ -16,7 +17,6 @@ export const Navbar = () => {
     <Box
       h={["40px", "40px", "60px", "60px"]}
       w="100%"
-      color={"#484bf2"}
       bg={
         isAuth
           ? colorMode === "dark"
@@ -52,6 +52,7 @@ export const Navbar = () => {
           <NavLink to={isAuth ? "/dashboard" : "/"}>
             <Text>Home</Text>
           </NavLink>
+          {isAuth ? <SearchTeam /> : null}
           {isAuth ? <User /> : <Login />}
         </Flex>
       </Flex>

@@ -75,11 +75,7 @@ export const Login = () => {
       minW="350px"
       zIndex={2}
       px="10px"
-      bg={
-        colorMode === "dark"
-          ? loginPage.darkMode.mainBox
-          : loginPage.lightMode.mainBox
-      }
+      bg={colorMode === "dark" ? "" : loginPage.mainBox}
     >
       <Flex
         border={loginBorder}
@@ -88,12 +84,7 @@ export const Login = () => {
         m="auto"
         p="30px"
         borderRadius="1rem"
-        color={"#484bf2"}
-        bg={
-          colorMode === "dark"
-            ? loginPage.darkMode.loginBox
-            : loginPage.lightMode.loginBox
-        }
+        bg={loginPage.loginBox}
       >
         <Image w="50%" src={todolist} />
         <Text mb="10px" fontSize="30px" fontWeight="medium">
@@ -137,7 +128,6 @@ export const Login = () => {
                 cursor="pointer"
                 type="submit"
                 value="Login"
-                color={"#ffffff"}
               />
             </InputGroup>
           </FormControl>
