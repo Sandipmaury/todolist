@@ -80,7 +80,11 @@ export const Register = () => {
       minW="350px"
       zIndex={2}
       px="10px"
-      bg={registerPage.mainBox}
+      bg={
+        colorMode === "dark"
+          ? registerPage.darkMode.mainBox
+          : registerPage.lightMode.mainBox
+      }
     >
       <Flex
         border={registerBorder}
@@ -89,7 +93,6 @@ export const Register = () => {
         m="auto"
         p="30px"
         borderRadius="1rem"
-        bg={registerPage.registerBox}
       >
         <Image w="50%" src={todolist} />
         <Text mb="10px" fontSize="30px" fontWeight="medium">

@@ -43,12 +43,6 @@ export const searchCard = {
     backgroundColor: "#e8f0fe",
   },
   darkMode: {
-    backgroundColor: "#0c0b48",
+    backgroundColor: "#1c2128",
   },
 };
-
-// #ff8a82;
-// #484bf2
-// #bfd1fd;
-// #7e98f6
-// #1b0f91

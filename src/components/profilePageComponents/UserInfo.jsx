@@ -6,7 +6,7 @@ export const UserInfo = () => {
   const userDetails = useSelector((store) => store.ProfileReducer.data)?.data
     ?.user;
 
-  document.title = `${userDetails?.username}'s profile`;
+  document.title = `Todo list | ${userDetails?.username}'s profile`;
   return (
     <Flex
       justifyContent={"space-between"}
@@ -16,15 +16,33 @@ export const UserInfo = () => {
       px={2}
       border={"1px solid #e8f0fe"}
     >
-      <Box>
-        <Text> UserId:- {userDetails?._id} </Text>
-        <Text> Username:- {userDetails?.username} </Text>
-        <Text> Email:- {userDetails?.email} </Text>
+      <Box fontWeight={"medium"}>
+        <Flex gap={2} alignItems={"center"}>
+          <Text>UserId:-</Text>
+          <Text fontWeight={"normal"}> {userDetails?._id} </Text>
+        </Flex>
+        <Flex gap={2} alignItems={"center"}>
+          <Text>Username:- </Text>
+          <Text fontWeight={"normal"}>{userDetails?.username}</Text>
+        </Flex>
+        <Flex gap={2} alignItems={"center"}>
+          <Text>Email:- </Text>
+          <Text fontWeight={"normal"}>{userDetails?.email} </Text>
+        </Flex>
       </Box>
-      <Box>
-        <Text> Role:- {userDetails?.role} </Text>
-        <Text> Register at:- {userDetails?.registerAt} </Text>
-        <Text> Last login:- {userDetails?.loginAt} </Text>
+      <Box fontWeight={"medium"}>
+        <Flex gap={2} alignItems={"center"}>
+          <Text>Role:- </Text>
+          <Text fontWeight={"normal"}>{userDetails?.role} </Text>
+        </Flex>
+        <Flex gap={2} alignItems={"center"}>
+          <Text>Register at:- </Text>
+          <Text fontWeight={"normal"}>{userDetails?.registerAt}</Text>
+        </Flex>
+        <Flex gap={2} alignItems={"center"}>
+          <Text>Last login:-</Text>
+          <Text fontWeight={"normal"}>{userDetails?.loginAt}</Text>
+        </Flex>
       </Box>
     </Flex>
   );

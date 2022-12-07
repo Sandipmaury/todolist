@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import { ProjectHeader } from "../dashboardComponents/ProjectHeader";
@@ -8,10 +8,10 @@ export const ProjectsBox = () => {
     ?.projects;
 
   return (
-    <>
+    <Flex direction={"column"} gap={2}>
       {projects?.length ? (
         projects?.map((element, index) => (
-          <Box key={index} border={"1px solid #e8f0fe"}>
+          <Box key={index} mb={2} border={"1px solid #e8f0fe"}>
             <ProjectHeader projects={element} />
           </Box>
         ))
@@ -20,6 +20,6 @@ export const ProjectsBox = () => {
           No project found
         </Text>
       )}
-    </>
+    </Flex>
   );
 };

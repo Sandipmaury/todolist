@@ -14,7 +14,7 @@ export const Dashboard = () => {
   const [projectId, setProjectId] = useState("");
   const dispatch = useDispatch();
 
-  document.title = "create projects and manage.";
+  document.title = "Todo list | Create projects and manage.";
 
   const dragEndHandler = (event) => {
     const { destination, source, draggableId } = event;

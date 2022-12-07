@@ -52,7 +52,7 @@ export const Navbar = () => {
           <NavLink to={isAuth ? "/dashboard" : "/"}>
             <Text>Home</Text>
           </NavLink>
-          {isAuth ? <SearchTeam /> : null}
+          {/* {isAuth ? <SearchTeam /> : null} */}
           {isAuth ? <User /> : <Login />}
         </Flex>
       </Flex>

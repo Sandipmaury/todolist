@@ -1,9 +1,11 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { searchCard } from "../../config/Backgrounds";
 
 export const SearchResultCard = ({ onClose, data }) => {
+  const { colorMode } = useColorMode();
+
   const navigate = useNavigate();
   const clickHandler = (userId) => {
     onClose();
@@ -18,7 +20,9 @@ export const SearchResultCard = ({ onClose, data }) => {
       ) : (
         data?.map((element, index) => (
           <Text
-            _hover={searchCard.lightMode}
+            _hover={
+              colorMode === "dark" ? searchCard.darkMode : searchCard.lightMode
+            }
             cursor={"pointer"}
             border={"1px solid lightgray"}
             p={2}

@@ -4,6 +4,7 @@ import {
   FormControl,
   Input,
   InputGroup,
+  Select,
   Textarea,
   useToast,
 } from "@chakra-ui/react";
@@ -14,29 +15,28 @@ import { createProjectBorder } from "../../config/Borders";
 import { createProject } from "../../redux/ProjectReducer/actions";
 
 export const FormCreateProject = ({ isOpen, onToggle }) => {
-  const data = useSelector((store) => store.ProjectReducer.data);
   const isLoading = useSelector((store) => store.ProjectReducer.isLoading);
-  const [title, setTitle] = useState(
-    data?.data?.title ? data?.data?.title : ""
-  );
-  const [about, setAbout] = useState(
-    data?.data?.about ? data?.data?.about : ""
-  );
+  const [title, setTitle] = useState("");
+  const [about, setAbout] = useState("");
+  const [type, setType] = useState("");
+  const [date, setDate] = useState("");
   const dispatch = useDispatch();
   const toast = useToast();
 
   // project form handler
   const formHandler = (event) => {
     event.preventDefault();
-    dispatch(createProject({ title: title, about: about })).then(() => {
-      toast({
-        title: "Project created.",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-      onToggle();
-    });
+    dispatch(createProject({ title: title, about: about, type: type })).then(
+      () => {
+        toast({
+          title: "Project created.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        onToggle();
+      }
+    );
   };
 
   useEffect(() => {
@@ -68,6 +68,25 @@ export const FormCreateProject = ({ isOpen, onToggle }) => {
               spellCheck={"true"}
             />
           </InputGroup>
+        </FormControl>
+        <FormControl isRequired>
+          <Select
+            isRequired
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value={""}>--select type--</option>
+            <option value={"individual"}>Individual</option>
+            <option value={"group"}>Group</option>
+          </Select>
+        </FormControl>
+        <FormControl my={"5px"} isRequired>
+          <Input
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            type={"datetime-local"}
+            min={"2022-11-22T22:29"}
+          />
         </FormControl>
         <Button
           isLoading={isLoading}

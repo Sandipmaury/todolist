@@ -16,7 +16,12 @@ import { TaskCard } from "./TaskCard";
 export const RunningTask = ({ projectId }) => {
   const { isOpen, onToggle } = useDisclosure();
   const data = useSelector((store) => store.TaskReducer.data);
-  const taskArr = data?.data?.filter((el) => el.status === "running");
+  const taskArr = data?.data
+    ?.filter((el) => el.status === "running")
+    .sort((a, b) => {
+      if (a.updatedAt < b.updatedAt) return -1;
+      else return 1;
+    });
   return (
     <Box rounded={"md"} border={taskCreated}>
       <Droppable droppableId={"running"}>

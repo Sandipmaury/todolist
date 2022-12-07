@@ -75,7 +75,11 @@ export const Login = () => {
       minW="350px"
       zIndex={2}
       px="10px"
-      bg={colorMode === "dark" ? "" : loginPage.mainBox}
+      bg={
+        colorMode === "dark"
+          ? loginPage.darkMode.mainBox
+          : loginPage.lightMode.mainBox
+      }
     >
       <Flex
         border={loginBorder}
@@ -84,7 +88,6 @@ export const Login = () => {
         m="auto"
         p="30px"
         borderRadius="1rem"
-        bg={loginPage.loginBox}
       >
         <Image w="50%" src={todolist} />
         <Text mb="10px" fontSize="30px" fontWeight="medium">

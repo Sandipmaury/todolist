@@ -1,4 +1,11 @@
-import { Box, Button, Collapse, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Collapse,
+  Flex,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { AiFillProject } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -6,6 +13,7 @@ import { DeleteProject } from "./DeleteProject";
 import { UpdateProject } from "./UpdateProject";
 
 export const ProjectHeader = ({ setProjectId, projectId, projects }) => {
+  const { colorMode } = useColorMode();
   const [show, setShow] = useState(false);
   const data = useSelector((store) => store.ProjectReducer.data);
   const userDetails = useSelector((store) => store.AuthReducer.userDetails);
@@ -68,7 +76,7 @@ export const ProjectHeader = ({ setProjectId, projectId, projects }) => {
         <Text
           borderRadius={6}
           p={1}
-          bg={"#e8f0fe"}
+          bg={colorMode === "dark" ? "#2e3239" : "#e8f0fe"}
           fontSize={"12px"}
           fontWeight={"medium"}
         >
@@ -87,7 +95,11 @@ export const ProjectHeader = ({ setProjectId, projectId, projects }) => {
           </Text>
         </Collapse>
         {showButton ? (
-          <Button size="sm" onClick={() => setShow(!show)} mt="1rem">
+          <Button
+            size={["xs", "sm", "sm", "sm"]}
+            onClick={() => setShow(!show)}
+            mt="1rem"
+          >
             Show {show ? "Less" : "More"}
           </Button>
         ) : null}
